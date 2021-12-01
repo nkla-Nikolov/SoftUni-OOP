@@ -1,5 +1,6 @@
 ﻿using System;
 using CarRacing.Models.Cars.Contracts;
+using CarRacing.Utilities.Messages;
 
 namespace CarRacing.Models.Cars
 {
@@ -28,7 +29,8 @@ namespace CarRacing.Models.Cars
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Car make cannot be null or empty.");
+                    throw new ArgumentException(ExceptionMessages.InvalidCarMake);
+                    
                 }
 
                 make = value;
@@ -42,22 +44,22 @@ namespace CarRacing.Models.Cars
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Car model cannot be null or empty.");
+                    throw new ArgumentException(ExceptionMessages.InvalidCarModel);
                 }
 
                 model = value;
             }
         }
-            
+
 
         public string VIN
         {
             get => vin;
             private set
             {
-                if (value.Length != 17)
+                if (value.Length < 17 || value.Length > 17)
                 {
-                    throw new ArgumentException("Car VIN must be exactly 17 characters long.");
+                    throw new ArgumentException(ExceptionMessages.InvalidCarVIN);
                 }
 
                 vin = value;
@@ -71,7 +73,7 @@ namespace CarRacing.Models.Cars
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Horse power cannot be below 0.");
+                    throw new ArgumentException(ExceptionMessages.InvalidCarHorsePower);
                 }
 
                 horsePower = value;
@@ -99,7 +101,7 @@ namespace CarRacing.Models.Cars
             {
                 if (value < 0)
                 {
-                    throw new ArgumentException("Fuel consumption cannot be below 0.");
+                    throw new ArgumentException(ExceptionMessages.InvalidCarFuelConsumption);
                 }
 
                 fuelConsumptionPerRace = value;
@@ -108,17 +110,6 @@ namespace CarRacing.Models.Cars
 
         public virtual void Drive()
         {
-            //if (this.GetType().Name == "TunedCar")
-            //{
-            //    double horsePowerReduction = (this.HorsePower * 3) / 100;
-            //    this.HorsePower = (int)Math.Round(HorsePower - horsePowerReduction);
-            //    this.FuelAvailable -= this.FuelConsumptionPerRace;
-            //}
-            //else
-            //{
-            //    this.FuelAvailable -= this.FuelConsumptionPerRace;
-            //}
-
             this.FuelAvailable -= this.FuelConsumptionPerRace;
         }
     }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CarRacing.Models.Cars
 {
@@ -16,7 +14,8 @@ namespace CarRacing.Models.Cars
 
         public override void Drive()
         {
-            this.HorsePower -= (int)Math.Round(this.HorsePower * 0.03);
+            double horsePowerReduction = (this.HorsePower * 3) / 100;
+            this.HorsePower = (int)Math.Round(this.HorsePower - horsePowerReduction);
             base.Drive();
         }
     }

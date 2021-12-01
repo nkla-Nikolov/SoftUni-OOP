@@ -1,7 +1,6 @@
 ﻿using CarRacing.Models.Cars.Contracts;
+using CarRacing.Utilities.Messages;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CarRacing.Models.Racers.Contracts
 {
@@ -29,7 +28,7 @@ namespace CarRacing.Models.Racers.Contracts
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Username cannot be null or empty.");
+                    throw new ArgumentException(ExceptionMessages.InvalidRacerName);
                 }
 
                 username = value;
@@ -43,7 +42,7 @@ namespace CarRacing.Models.Racers.Contracts
             {
                 if (string.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException("Racing behavior cannot be null or empty.");
+                    throw new ArgumentException(ExceptionMessages.InvalidRacerBehavior);
                 }
 
                 racingBehavior = value;
@@ -57,7 +56,7 @@ namespace CarRacing.Models.Racers.Contracts
             {
                 if (value < 0 || value > 100)
                 {
-                    throw new ArgumentException("Racer driving experience must be between 0 and 100.");
+                    throw new ArgumentException(ExceptionMessages.InvalidRacerDrivingExperience);
                 }
 
                 drivingExperience = value;
@@ -71,27 +70,27 @@ namespace CarRacing.Models.Racers.Contracts
             {
                 if (value == null)
                 {
-                    throw new ArgumentException("Car cannot be null or empty.");
+                    throw new ArgumentException(ExceptionMessages.InvalidRacerCar);
                 }
 
                 car = value;
             }
         }
 
-        public bool IsAvailable() => this.Car.FuelAvailable - this.Car.FuelConsumptionPerRace > 0;
+        public bool IsAvailable()
+        {
+            if (this.Car.FuelAvailable - this.Car.FuelConsumptionPerRace > 0)
+            {
+                return true;
+            }
+
+            return false;
+        }
 
         public virtual void Race()
         {
-            //if (this.GetType().Name == "ProfessionalRacer")
-            //{
-            //    this.DrivingExperience += 10;
-            //}
-            //else
-            //{
-            //    this.DrivingExperience += 5;
-            //}
-
             this.Car.Drive();
         }
+
     }
 }

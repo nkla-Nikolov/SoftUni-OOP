@@ -53,8 +53,6 @@ namespace CarRacing.Models.Maps
             }
 
             return $"{racerOne.Username} has just raced against {racerTwo.Username}! {racerTwo.Username} is the winner!";
-
-
         }
     }
 }
