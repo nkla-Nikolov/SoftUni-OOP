@@ -53,7 +53,7 @@ namespace CarRacing.Models.Racers.Contracts
         public int DrivingExperience
         {
             get => drivingExperience;
-            private set
+            protected set
             {
                 if (value < 0 || value > 100)
                 {
@@ -78,36 +78,20 @@ namespace CarRacing.Models.Racers.Contracts
             }
         }
 
-        public bool IsAvailable()
+        public bool IsAvailable() => this.Car.FuelAvailable - this.Car.FuelConsumptionPerRace > 0;
+
+        public virtual void Race()
         {
-            if (this.Car.FuelAvailable > 0)
-            {
-                return true;
-            }
+            //if (this.GetType().Name == "ProfessionalRacer")
+            //{
+            //    this.DrivingExperience += 10;
+            //}
+            //else
+            //{
+            //    this.DrivingExperience += 5;
+            //}
 
-            return false;
+            this.Car.Drive();
         }
-
-        public void Race()
-        {
-            if (this.GetType().Name == "ProfessionalRacer")
-            {
-                this.DrivingExperience += 10;
-            }
-            else
-            {
-                this.DrivingExperience += 5;
-            }
-        }
-
-        //public override string ToString()
-        //{
-        //    StringBuilder sb = new StringBuilder();
-        //    sb.AppendLine($"{GetType().Name}: {this.Username}");
-        //    sb.AppendLine($"--Driving behavior: {this.RacingBehavior}");
-        //    sb.AppendLine($"--Driving experience: {this.DrivingExperience}");
-        //    sb.AppendLine($"--Car: {this.Car.Make} {this.Car.Model} ({this.Car.VIN})");
-        //    return sb.ToString().TrimEnd();
-        //}
     }
 }

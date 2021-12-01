@@ -23,9 +23,7 @@ namespace CarRacing.Models.Maps
                 return $"{racerOne.Username} wins the race! {racerTwo.Username} was not available to race!";
             }
 
-            racerOne.Car.Drive();
             racerOne.Race();
-            racerTwo.Car.Drive();
             racerTwo.Race();
 
             double firstRacerPoints = 0;

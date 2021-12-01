@@ -13,5 +13,11 @@ namespace CarRacing.Models.Cars
             : base(make, model, vin, horsePower, fuelAvailable, fuelConsumptionPerRace)
         {
         }
+
+        public override void Drive()
+        {
+            this.HorsePower -= (int)Math.Round(this.HorsePower * 0.03);
+            base.Drive();
+        }
     }
 }

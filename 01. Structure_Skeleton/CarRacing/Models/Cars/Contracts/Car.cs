@@ -55,7 +55,7 @@ namespace CarRacing.Models.Cars
             get => vin;
             private set
             {
-                if (value.Length < 17 || value.Length > 17)
+                if (value.Length != 17)
                 {
                     throw new ArgumentException("Car VIN must be exactly 17 characters long.");
                 }
@@ -67,7 +67,7 @@ namespace CarRacing.Models.Cars
         public int HorsePower
         {
             get => horsePower;
-            private set
+            protected set
             {
                 if (value < 0)
                 {
@@ -106,18 +106,20 @@ namespace CarRacing.Models.Cars
             }
         }
 
-        public void Drive()
+        public virtual void Drive()
         {
-            if (this.GetType().Name == "TunedCar")
-            {
-                double horsePowerReduction = (this.HorsePower * 3) / 100;
-                this.HorsePower = (int)Math.Floor(HorsePower - horsePowerReduction);
-                this.FuelAvailable -= this.FuelConsumptionPerRace;
-            }
-            else
-            {
-                this.FuelAvailable -= this.FuelConsumptionPerRace;
-            }
+            //if (this.GetType().Name == "TunedCar")
+            //{
+            //    double horsePowerReduction = (this.HorsePower * 3) / 100;
+            //    this.HorsePower = (int)Math.Round(HorsePower - horsePowerReduction);
+            //    this.FuelAvailable -= this.FuelConsumptionPerRace;
+            //}
+            //else
+            //{
+            //    this.FuelAvailable -= this.FuelConsumptionPerRace;
+            //}
+
+            this.FuelAvailable -= this.FuelConsumptionPerRace;
         }
     }
 }
