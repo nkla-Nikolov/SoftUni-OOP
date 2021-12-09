@@ -1,7 +1,5 @@
 ﻿using AquaShop.Models.Fish.Contracts;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AquaShop.Models.Fish
 {
@@ -38,10 +36,12 @@ namespace AquaShop.Models.Fish
             get => species;
             private set
             {
-                if (string.IsNullOrWhiteSpace(value));
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException("Fish species cannot be null or empty.");
                 }
+
+                species = value;
             }
         }
 

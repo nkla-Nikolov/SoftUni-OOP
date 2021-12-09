@@ -91,7 +91,7 @@ namespace AquaShop.Models.Aquariums
             sb.AppendLine($"{this.Name} ({this.GetType().Name}):");
             if (fishRepo.Count == 0)
             {
-                sb.AppendLine("none");
+                sb.AppendLine("Fish: none");
             }
             else
             {
@@ -102,7 +102,7 @@ namespace AquaShop.Models.Aquariums
                     fishNames.Add(fish.Name);
                 }
 
-                sb.AppendLine($"{string.Join(" ,", fishNames)}");
+                sb.AppendLine($"Fish: {string.Join(", ", fishNames)}");
             }
 
             sb.AppendLine($"Decorations: {decorations.Count}");

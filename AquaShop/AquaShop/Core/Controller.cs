@@ -58,22 +58,34 @@ namespace AquaShop.Core
         {
             var aquarium = aquariums.Models.First(x => x.Name == aquariumName);
 
-            if (fishType == "FreshwaterFish" && aquarium.GetType().Name == "FreshwaterAquarium")
+            if (fishType == "FreshwaterFish")
             {
-                aquarium.AddFish(new FreshwaterFish(fishName, fishSpecies, price));
-                return $"Successfully added {fishType} to {aquariumName}.";
+                if (aquarium.GetType().Name == "FreshwaterAquarium")
+                {
+                    aquarium.AddFish(new FreshwaterFish(fishName, fishSpecies, price));
+                    return $"Successfully added {fishType} to {aquariumName}.";
+                }
+                else
+                {
+                    return $"Water not suitable.";
+                }
             }
-            else if (fishType == "SaltwaterFish" && aquarium.GetType().Name == "SaltwaterAquarium")
+            else if (fishType == "SaltwaterFish")
             {
-                aquarium.AddFish(new SaltwaterFish(fishName, fishSpecies, price));
-                return $"Successfully added {fishType} to {aquariumName}.";
+                if (aquarium.GetType().Name == "SaltwaterAquarium")
+                {
+                    aquarium.AddFish(new SaltwaterFish(fishName, fishSpecies, price));
+                    return $"Successfully added {fishType} to {aquariumName}.";
+                }
+                else
+                {
+                    return $"Water not suitable.";
+                }
             }
-            else if (fishType != "SaltwaterFish" || fishType != "FreshwaterFish")
+            else
             {
                 throw new InvalidOperationException("Invalid fish type.");
             }
-
-            return $"Water not suitable.";
         }
 
         public string CalculateValue(string aquariumName)
