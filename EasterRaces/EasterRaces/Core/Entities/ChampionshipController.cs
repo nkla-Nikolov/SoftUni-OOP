@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using EasterRaces.Core.Contracts;
-using EasterRaces.Models.Cars.Contracts;
 using EasterRaces.Models.Cars.Entities;
-using EasterRaces.Models.Drivers.Contracts;
 using EasterRaces.Models.Drivers.Entities;
 using EasterRaces.Models.Races.Entities;
 using EasterRaces.Repositories.Entities;
+
 
 namespace EasterRaces.Core.Entities
 {
@@ -19,6 +16,10 @@ namespace EasterRaces.Core.Entities
         private DriverRepository drivers = new DriverRepository();
         private RaceRepository races = new RaceRepository();
 
+        public ChampionshipController()
+        {
+
+        }
 
         public string CreateDriver(string driverName)
         {
@@ -36,7 +37,7 @@ namespace EasterRaces.Core.Entities
         {
             if (cars.Models.Any(x => x.Model == model))
             {
-                throw new ArgumentNullException($"Car {model} is already created.");
+                throw new ArgumentException($"Car {model} is already created.");
             }
 
             if (type == "Muscle")
@@ -116,12 +117,11 @@ namespace EasterRaces.Core.Entities
                 throw new InvalidOperationException($"Race {race.Name} cannot start with less than 3 participants.");
             }
 
-            foreach (var driver in race.Drivers)
-            {
-                driver.Car.CalculateRacePoints(race.Laps);
-            }
 
-            var bestDrivers = race.Drivers.OrderByDescending(x => x.NumberOfWins).Take(3).ToList();
+            var bestDrivers = race.Drivers.OrderByDescending(x => x.Car.CalculateRacePoints(race.Laps))
+                .Take(3)
+                .ToList();
+
             StringBuilder sb = new StringBuilder();
 
             sb.AppendLine($"Driver {bestDrivers[0].Name} wins {race.Name} race.");
