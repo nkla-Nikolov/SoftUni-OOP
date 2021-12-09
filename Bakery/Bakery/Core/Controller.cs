@@ -13,7 +13,7 @@ namespace Bakery.Core
 {
     public class Controller : IController
     {
-        private List<IBakedFood> foods = new List<IBakedFood>();
+        private List<IBakedFood> bakedFoods = new List<IBakedFood>();
         private List<IDrink> drinks = new List<IDrink>();
         private List<ITable> tables = new List<ITable>();
         private decimal totalIncome = 0;
@@ -48,7 +48,7 @@ namespace Bakery.Core
                 food = new Cake(name, price);
             }
 
-            foods.Add(food);
+            bakedFoods.Add(food);
             return $"Added {food.Name} ({food.GetType().Name}) to the menu";
         }
 
@@ -127,7 +127,7 @@ namespace Bakery.Core
                 return $"Could not find table {tableNumber}";
             }
 
-            var food = foods.FirstOrDefault(x => x.Name == foodName);
+            var food = bakedFoods.FirstOrDefault(x => x.Name == foodName);
 
             if (food == null)
             {
