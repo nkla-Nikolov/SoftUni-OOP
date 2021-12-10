@@ -64,10 +64,10 @@ namespace OnlineShop.Models.Products
             }
         }
 
-        public decimal Price
+        public virtual decimal Price
         {
             get => price;
-            private set
+            protected set
             {
                 if (value <= 0)
                 {
@@ -78,7 +78,7 @@ namespace OnlineShop.Models.Products
             }
         }
 
-        public double OverallPerformance
+        public virtual double OverallPerformance
         {
             get => overallPerformance;
             protected set

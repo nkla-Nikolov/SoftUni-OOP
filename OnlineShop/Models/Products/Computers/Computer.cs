@@ -9,8 +9,6 @@ namespace OnlineShop.Models.Products.Computers
 {
     public abstract class Computer : Product, IComputer
     {
-        private decimal price;
-        private double overallPerformance;
         private List<IComponent> components;
         private List<IPeripheral> peripherals;
 
@@ -20,33 +18,26 @@ namespace OnlineShop.Models.Products.Computers
         {
             this.components = new List<IComponent>();
             this.peripherals = new List<IPeripheral>();
-            this.OverallPerformance = overallPerformance;
-            this.Price = price;
         }
 
-        public double OverallPerformance
+        public override double OverallPerformance
         {
-            get => overallPerformance;
-            private set
+            get
             {
-                if (components.Count == 0)
+                if (this.Components.Count == 0)
                 {
-                    overallPerformance = value;
+                    return base.OverallPerformance;
                 }
-                else
-                {
-                    double averageComponentsPerformance = components.Sum(x => x.OverallPerformance) / components.Count;
-                    overallPerformance = value + averageComponentsPerformance;
-                }
+
+                return base.OverallPerformance + (this.Components.Sum(x => x.OverallPerformance) / this.Components.Count);
             }
         }
 
-        public decimal Price
+        public override decimal Price
         {
-            get => price;
-            private set
+            get
             {
-                price = value + components.Sum(x => x.Price) + peripherals.Sum(x => x.Price);
+                return base.Price + this.Components.Sum(x => x.Price) + this.Peripherals.Sum(x => x.Price);
             }
         }
 
@@ -104,6 +95,36 @@ namespace OnlineShop.Models.Products.Computers
 
             peripherals.Remove(peripheral);
             return peripheral;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine($"Overall Performance: {this.OverallPerformance:f2}. Price: {this.Price:f2} - {GetType().Name}: {this.Manufacturer} {this.Model} (Id: {this.Id})");
+            sb.AppendLine($" Components ({this.Components.Count}):");
+
+            foreach (var component in this.Components)
+            {
+                sb.AppendLine($"  {component.ToString()}");
+            }
+
+            if (this.Peripherals.Count == 0)
+            {
+                sb.AppendLine($" Peripherals ({this.Peripherals.Count}); Average Overall Performance (0.00):");
+            }
+            else
+            {
+                sb.AppendLine($" Peripherals ({this.Peripherals.Count}); Average Overall Performance ({this.Peripherals.Average(x => x.OverallPerformance)}):");
+
+                foreach (var peripheral in this.Peripherals)
+                {
+                    sb.AppendLine($"  {peripheral.ToString()}");
+                }
+            }
+            
+
+            return sb.ToString().TrimEnd();
         }
     }
 }
