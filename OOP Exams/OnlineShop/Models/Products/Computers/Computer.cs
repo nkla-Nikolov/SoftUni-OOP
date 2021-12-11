@@ -24,7 +24,7 @@ namespace OnlineShop.Models.Products.Computers
         {
             get
             {
-                if (this.Components.Count == 0)
+                if (this.Components.Count == 0 || this.Components == null)
                 {
                     return base.OverallPerformance;
                 }
