@@ -17,15 +17,14 @@ namespace Skeleton.Tests
             Assert.AreEqual(4, axe.DurabilityPoints);
         }
 
-
-        [Testcase(5, 0)]
+        
+        [TestCase(5, 0)]
         [TestCase(10, -1)]
         public void AxeCannotFightWithLessThan0Points(int attack, int durability)
         {
             Axe axe = new Axe(attack, durability);
 
             Assert.Throws<InvalidOperationException>(() => axe.Attack(new Dummy(15, 20)));
-
         }
     }
 }
