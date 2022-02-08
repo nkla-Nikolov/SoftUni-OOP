@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vehicles", "Vehicles\Vehicles.csproj", "{AEEE1C33-F388-4202-B3CF-11150B7C51BB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raiding", "Raiding\Raiding.csproj", "{A9889D5D-C9F0-425F-A556-8D3BBC1531EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WildFarm", "WildFarm\WildFarm.csproj", "{4EB08D70-1469-4517-82CB-47E61A75E822}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEEE1C33-F388-4202-B3CF-11150B7C51BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEEE1C33-F388-4202-B3CF-11150B7C51BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEEE1C33-F388-4202-B3CF-11150B7C51BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEEE1C33-F388-4202-B3CF-11150B7C51BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9889D5D-C9F0-425F-A556-8D3BBC1531EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9889D5D-C9F0-425F-A556-8D3BBC1531EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9889D5D-C9F0-425F-A556-8D3BBC1531EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9889D5D-C9F0-425F-A556-8D3BBC1531EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EB08D70-1469-4517-82CB-47E61A75E822}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EB08D70-1469-4517-82CB-47E61A75E822}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EB08D70-1469-4517-82CB-47E61A75E822}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EB08D70-1469-4517-82CB-47E61A75E822}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {27F8F5DE-4DF7-4F4C-9C34-EF9EB7A1F402}
+	EndGlobalSection
+EndGlobal
