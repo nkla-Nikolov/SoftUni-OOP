@@ -12,7 +12,7 @@ namespace Skeleton.Tests
             Dummy dummy = new Dummy(5, 10);
 
             dummy.TakeAttack(1);
-            
+
             Assert.AreEqual(4, dummy.Health);
         }
 
